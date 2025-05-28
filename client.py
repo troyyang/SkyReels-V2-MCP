@@ -121,7 +121,7 @@ class SkyreelsClient:
             prompt: str,
             image_path: Optional[str] = None,
             model_id: str = "Skywork/SkyReels-V2-DF-1.3B-540P",
-            resolution: str = "540P",
+            resolution: str = "544*960",
             num_frames: int = 97,
             end_image: Optional[str] = None,
             video_path: str = '',
@@ -268,7 +268,7 @@ class SkyreelsClient:
             prompt: str,
             image_path: Optional[str] = None,
             model_id: str = "Skywork/SkyReels-V2-I2V-1.3B-540P",
-            resolution: str = "540P",
+            resolution: str = "544*960",
             num_frames: int = 97,
             guidance_scale=6.0,
             shift=8.0,
@@ -620,7 +620,7 @@ async def create_video_for_df():
 
             # Generate video and wait for completion
             downloaded_files = await client.generate_video_df(prompt,
-                                        resolution="540P",
+                                        resolution="544*960",
                                         ar_step=5,
                                         causal_block_size=5,
                                         base_num_frames=97,
@@ -686,7 +686,7 @@ async def create_video_for_i2v():
                 prompt=prompt,
                 image_path=image_path,  # This will be uploaded automatically if provided
                 model_id="Skywork/SkyReels-V2-I2V-1.3B-540P",
-                resolution="540P",
+                resolution="960*544",
                 num_frames=97,
                 guidance_scale=5.0,
                 shift=3.0,

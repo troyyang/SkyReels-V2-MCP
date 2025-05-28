@@ -20,7 +20,7 @@ def get_video_num_frames_moviepy(video_path):
 def generate_video(
     save_dir="df",
     model_id="Skywork/SkyReels-V2-DF-1.3B-540P",
-    resolution="540P",
+    resolution="960*544",
     num_frames=97,
     image=None,
     end_image=None,
@@ -60,11 +60,14 @@ def generate_video(
         seed = int(random.randrange(4294967294))
 
     # Set resolution
-    if resolution == "540P":
-        height, width = 544, 960
-    elif resolution == "720P":
-        height, width = 720, 1280
-    else:
+    width, height = {
+        "544*960": (544, 960),
+        "960*544": (960, 544),
+        "720*1280": (720, 1280),
+        "1280*720": (1280, 720),
+    }.get(resolution, (None, None))
+
+    if height is None:
         raise ValueError(f"Invalid resolution: {resolution}")
 
     # Validate parameters

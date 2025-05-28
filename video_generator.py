@@ -31,7 +31,7 @@ MODEL_ID_CONFIG = {
 def create_video_from_prompt_or_image(
     save_dir="video_out",
     model_id="Skywork/SkyReels-V2-T2V-14B-540P",
-    resolution="540P",
+    resolution="960*544",
     num_frames=97,
     image_path=None,
     guidance_scale=6.0,
@@ -55,9 +55,11 @@ def create_video_from_prompt_or_image(
     if seed is None:
         seed = int(random.randrange(4294967294))
 
-    height, width = {
-        "540P": (544, 960),
-        "720P": (720, 1280),
+    width, height = {
+        "544*960": (544, 960),
+        "960*544": (960, 544),
+        "720*1280": (720, 1280),
+        "1280*720": (1280, 720),
     }.get(resolution, (None, None))
     if height is None:
         raise ValueError(f"Invalid resolution: {resolution}")
